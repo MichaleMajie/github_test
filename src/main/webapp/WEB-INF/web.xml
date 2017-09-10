@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>NETCTOSS</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+  		<servlet-name>main</servlet-name>
+  		<servlet-class>web.MainServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  			<servlet-name>main</servlet-name>
+  			<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 配置错误页面,告诉服务器在捕获到哪种错误时
+     自动转发到哪个页面
+     由于转发只局限于项目内部资源,所以在写绝对路径时
+     服务器会自动增加项目名,自己不用加 -->
+     <error-page>
+     			<exception-type>java.lang.Exception</exception-type>
+     			<!-- <error-code></error-code> -->
+     			<location>/WEB-INF/error.jsp</location>
+     </error-page>
+     <!-- 登录检查过滤器 -->
+      <filter>
+     		<filter-name>login</filter-name>
+     		<filter-class>web.LoginFilter</filter-class>
+     </filter>
+     <filter-mapping>
+     		<filter-name>login</filter-name>
+     		<url-pattern>*.do</url-pattern>
+     </filter-mapping> 
+</web-app>
